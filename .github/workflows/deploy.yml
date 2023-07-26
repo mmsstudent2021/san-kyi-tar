@@ -28,6 +28,7 @@ jobs:
         with:
             server: ftp.mmsdev.site
             port: 21
+            localPath: './dist'
             username: ${{ secrets.FTP_USERNAME }}
             password: ${{ secrets.FTP_PASSWORD }}
 
