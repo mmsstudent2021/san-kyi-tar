@@ -23,18 +23,26 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Upload production-ready build files
-        uses: actions/upload-artifact@v3
+      - name: a Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4 
         with:
-          name: production-files
-          path: ./dist
+            server: ftp.mmsdev.site
+            port: 21
+            username: ${{ secrets.FTP_USERNAME }}
+            password: ${{ secrets.FTP_PASSWORD }}
 
-      - name: Upload Production Server
-        uses: Creepios/sftp-action@v1.0.3
-        with:
-          host: ftp.mmsdev.site
-          port: 21
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          localPath: './dist'
+    #   - name: Upload production-ready build files
+    #     uses: actions/upload-artifact@v3
+    #     with:
+    #       name: production-files
+    #       path: ./dist
+
+    #   - name: Upload Production Server
+    #     uses: Creepios/sftp-action@v1.0.3
+    #     with:
+    #       host: ftp.mmsdev.site
+    #       port: 21
+    #       username: ${{ secrets.FTP_USERNAME }}
+    #       password: ${{ secrets.FTP_PASSWORD }}
+    #       localPath: './dist'
         #   remotePath: '/var/www/****'
